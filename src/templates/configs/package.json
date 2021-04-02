@@ -1,0 +1,21 @@
+{
+  "name": "%%appName%%",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server",
+  "scripts": {
+    "test": "test",
+    "start.hot": "nodemon src/server",
+    "start": "node src/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/%%repository%%.git"
+  },
+  "author": "%%author%%",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/%%repository%%/issues"
+  },
+  "homepage": "https://github.com/%%repository%%#readme"
+}

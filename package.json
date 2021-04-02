@@ -1,14 +1,13 @@
 {
-  "name": "create-node-app",
+  "name": "create-node-server",
   "version": "1.0.0",
   "description": "A boilerplate repo with scripts for setting up express or graphql based apps.",
   "main": "src/index.ts",
   "bin": {
-    "create-node-app": "src/index.js"
+    "create-node-server": "src/index.js"
   },
   "scripts": {
-    "test": "test",
-    "setup": "./_setup"
+    "test": "test"
   },
   "repository": {
     "type": "git",
