@@ -5,7 +5,7 @@ const shell = require("shelljs");
 const createFolderStructure = require("./createFolderStructure");
 const installDependencies = require("./installDependencies");
 
-const [appName, ...rest] = process.argv.slice(2);
+const [appName, ...args] = process.argv.slice(2);
 const createOption = (value) => ({ title: value, value });
 
 const languageOptions = ["javascript", "typescript"].map(createOption);
@@ -28,14 +28,32 @@ const dbOptions = [
   },
 ];
 
+const findFlag = ({ key, defaultValue, multi }) => {
+  const value = args.find((arg) => arg.includes(key));
+
+  if (!value) {
+    return defaultValue;
+  }
+
+  if (multi) {
+    return value.split(",");
+  }
+
+  return value;
+};
+
 (async () => {
   const config = {
-    language: "javascript",
-    api_mode: ["express"],
-    database: "pg",
+    language: findFlag({ key: "--lang", defaultValue: "javascript" }),
+    api_mode: findFlag({
+      key: "--apiMode",
+      defaultValue: ["express"],
+      multi: true,
+    }),
+    database: findFlag({ key: "--db", defaultValue: "pg" }),
   };
 
-  if (!rest.includes("--skip")) {
+  if (!args.includes("--skip")) {
     config = await prompts([
       {
         type: "select",
@@ -64,10 +82,12 @@ const dbOptions = [
 
   config.appName = appName;
 
+  console.log(config);
+
   shell.echo(`Creating new node-server ${appName}`);
 
   createFolderStructure(config);
-  // installDependencies(config);
+  installDependencies(config);
 
   shell.exec(`cd ${appName} && git init`);
 })();
