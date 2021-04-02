@@ -5,7 +5,7 @@ const createFolderStructure = (config) => {
 
   const dependencies = {
     required: {
-      dep: [
+      default: [
         "express",
         "cors",
         "dotenv",
@@ -19,13 +19,15 @@ const createFolderStructure = (config) => {
       ],
       dev: ["nodemon"],
     },
+    testSuite: {
+      jest: ["jest"],
+    },
   };
-  // const {}
 
-  shell.exec(`cd ${appName} && npm i ${dependencies.required.dep.join(" ")}`);
-  shell.exec(
-    `cd ${appName} && npm i -D ${dependencies.required.dev.join(" ")}`
-  );
+  const { required } = dependencies;
+
+  shell.exec(`cd ${appName} && npm i ${required.default.join(" ")}`);
+  shell.exec(`cd ${appName} && npm i -D ${required.dev.join(" ")}`);
 };
 
 module.exports = createFolderStructure;
