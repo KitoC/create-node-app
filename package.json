@@ -1,0 +1,27 @@
+{
+  "name": "create-node-app",
+  "version": "1.0.0",
+  "description": "A boilerplate repo with scripts for setting up express or graphql based apps.",
+  "main": "src/index.ts",
+  "bin": {
+    "create-node-app": "src/index.js"
+  },
+  "scripts": {
+    "test": "test",
+    "setup": "./_setup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/KitoC/create-node-app.git"
+  },
+  "author": "KitoC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KitoC/create-node-app/issues"
+  },
+  "homepage": "https://github.com/KitoC/create-node-app#readme",
+  "dependencies": {
+    "prompts": "^2.4.1",
+    "shelljs": "^0.8.4"
+  }
+}
