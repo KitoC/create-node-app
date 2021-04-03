@@ -29,7 +29,10 @@ const dbOptions = [
 ];
 
 const findFlag = ({ key, defaultValue, multi }) => {
-  const value = args.find((arg) => arg.includes(key));
+  const value = (args.find((arg) => arg.includes(key)) || "").replace(
+    `${key}=`,
+    ""
+  );
 
   if (!value) {
     return defaultValue;
@@ -81,8 +84,6 @@ const findFlag = ({ key, defaultValue, multi }) => {
   }
 
   config.appName = appName;
-
-  console.log(config);
 
   shell.echo(`Creating new node-server ${appName}`);
 

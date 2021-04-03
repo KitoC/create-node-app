@@ -1,6 +1,6 @@
-const awilix = require("awilix");
+%%imports%%
 
-module.exports = ({ app, registerModules = () => {} }) => {
+%%export%% ({ app, registerModules = () => {} }) => {
   const container = awilix.createContainer();
 
   container.loadModules(["services/**/*.js"], {

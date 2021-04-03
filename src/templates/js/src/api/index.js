@@ -1,6 +1,6 @@
-const { Router } = require("express");
+%%imports%%
 
-module.exports = () => {
+%%export%% () => {
   const routes = Router();
 
   return routes;

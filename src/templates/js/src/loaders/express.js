@@ -1,13 +1,10 @@
-const express = require("express");
-const helmet = require("helmet");
-const cors = require("cors");
-const routes = require("../api");
+%%imports%%
 
 const send200Status = (req, res) => {
   res.status(200).end();
 };
 
-module.exports = ({ app, config }) => {
+%%export%% ({ app, config }) => {
   app.get("/status", send200Status);
   app.head("/status", send200Status);
 
@@ -25,7 +22,7 @@ module.exports = ({ app, config }) => {
   app.use(express.json());
 
   // Load API routes
-  app.use(config.api.prefix, routes());
+  app.use(get(config, "api.prefix"), routes());
 
   /// catch 404 and forward to error handler
   app.use((req, res, next) => {

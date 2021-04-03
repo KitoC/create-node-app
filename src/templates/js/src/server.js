@@ -1,11 +1,9 @@
-const express = require("express");
-const config = require("../_config");
-const Logger = require("./loaders/logger");
+%%imports%%
 
 const startServer = async () => {
   const app = express();
 
-  await require("./loaders")({ app, config });
+  await loaders({ app, config });
 
   app
     .listen(config.port, () => {

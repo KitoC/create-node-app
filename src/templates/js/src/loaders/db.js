@@ -1,9 +1,6 @@
-const fs = require("fs");
-const path = require("path");
-const get = require("lodash/get");
-const { Sequelize } = require("sequelize");
+%%imports%%
 
-module.exports = ({ app, config }) => {
+%%export%% ({ app, config }) => {
   const env = process.env.NODE_ENV || "development";
 
   let db = {};

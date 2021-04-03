@@ -1,7 +1,9 @@
+%%imports%%
+
 require("dotenv").config();
 
-module.exports = {
+%%export%% {
   port: process.env.PORT,
   appName: "%%appName%%",
-  db: require("./db"),
+  db,
 };

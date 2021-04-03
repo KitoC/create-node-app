@@ -1,11 +1,6 @@
-const expressLoader = require("./express");
-const dbLoader = require("./db");
-const dependencyInjectorLoader = require("./dependencyInjector");
-const Logger = require("./logger");
+%%imports%%
 
-require("./events");
-
-module.exports = async ({ app, config }) => {
+%%export%% async (%%defaultExportArgs%%) => {
   const db = await dbLoader({ app, config });
 
   Logger.info("✌️ DB loaded and connected!");

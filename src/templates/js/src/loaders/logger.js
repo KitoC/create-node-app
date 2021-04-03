@@ -1,6 +1,4 @@
-const winston = require("winston");
-const get = require("lodash/get");
-const config = require("../../_config");
+%%imports%%
 
 const { printf, label, timestamp, errors, splat } = winston.format;
 const transports = [];
@@ -37,4 +35,4 @@ const LoggerInstance = winston.createLogger({
   transports,
 });
 
-module.exports = LoggerInstance;
+%%export%% LoggerInstance;
