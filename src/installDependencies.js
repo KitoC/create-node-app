@@ -1,30 +1,35 @@
 const shell = require("shelljs");
 
 const createFolderStructure = (config) => {
-  const { appName, database, language } = config;
-  const requiredDeps = {
-    default: [
-      "express",
-      "cors",
-      "dotenv",
-      "helmet",
-      "winston",
-      "lodash",
-      "awilix",
-      "sequelize",
-      "sequelize-cli",
-      database,
-    ],
-    dev: [
-      "jest",
-      "nodemon",
-      "prettier",
-      "eslint",
-      "eslint-config-airbnb-base",
-      "eslint-config-prettier",
-      "eslint-plugin-import",
-    ],
+  const { appName, appType, database, language } = config;
+
+  const appDeps = {
+    "node:backend": {
+      default: [
+        "express",
+        "cors",
+        "dotenv",
+        "helmet",
+        "winston",
+        "lodash",
+        "awilix",
+        "sequelize",
+        "sequelize-cli",
+        database,
+      ],
+      dev: [
+        "jest",
+        "nodemon",
+        "prettier",
+        "eslint",
+        "eslint-config-airbnb-base",
+        "eslint-config-prettier",
+        "eslint-plugin-import",
+      ],
+    },
   };
+
+  const requiredDeps = appDeps[appType];
 
   const exludeTypesList = [
     "dotenv",
@@ -33,6 +38,7 @@ const createFolderStructure = (config) => {
     "awilix",
     "sequelize-cli",
   ];
+
   const pkgTypes = requiredDeps.default
     .filter((pkg) => !exludeTypesList.includes(pkg))
     .map((pkg) => `@types/${pkg}`);

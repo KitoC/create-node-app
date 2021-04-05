@@ -75,7 +75,7 @@ const replaceVariablesRecusrive = ({ targetDir, variables, language }) => {
 };
 
 const createFolderStructure = async (config) => {
-  const { appName, repository = "", author = "", language } = config;
+  const { appName, appType, repository = "", author = "", language } = config;
 
   const configTemplateDir = path.join(__dirname, "templates", "configs");
   const appDir = appName;
@@ -83,7 +83,11 @@ const createFolderStructure = async (config) => {
   shell.exec(`rm -rf ${appName}`);
   shell.exec(`cp -r ${__dirname}/templates/configs/${language}/. ${appName}`);
   shell.exec(`cp -r ${__dirname}/templates/configs/always/. ${appName}`);
-  shell.exec(`cp -r ${__dirname}/templates/js/. ${appName}`);
+  shell.exec(`cp -r ${__dirname}/templates/${appType}/. ${appName}`);
+
+  if (language !== "typescript") {
+    shell.exec(`rm -rf ${appName}/src/@types`);
+  }
 
   replaceVariablesRecusrive({
     targetDir: appDir,

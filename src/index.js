@@ -47,6 +47,7 @@ const findFlag = ({ key, defaultValue, multi }) => {
 
 (async () => {
   const config = {
+    appType: findFlag({ key: "--appType", defaultValue: "node:backend" }),
     language: findFlag({ key: "--lang", defaultValue: "javascript" }),
     api_mode: findFlag({
       key: "--apiMode",

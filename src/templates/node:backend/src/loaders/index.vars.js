@@ -1,8 +1,4 @@
 module.exports = {
-  defaultExportArgs: {
-    javascript: "{ app, config }",
-    typescript: "{ app, config }",
-  },
   imports: {
     javascript: `const expressLoader = require("./express");
 const dbLoader = require("./db");
@@ -14,8 +10,12 @@ require("./events");
     typescript: `import expressLoader from "./express";
 import dbLoader from "./db";
 import dependencyInjectorLoader from "./dependencyInjector";
-import Logger from "./logger");
+import Logger from "./logger";
+import { LoaderArgs } from "../@types/loader.types";
 
 import  "./events";`,
+  },
+  loaderArgs: {
+    typescript: ": LoaderArgs",
   },
 };

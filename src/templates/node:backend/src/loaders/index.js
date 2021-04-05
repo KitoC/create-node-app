@@ -1,6 +1,6 @@
 %%imports%%
 
-%%export%% async (%%defaultExportArgs%%) => {
+%%export%% async ({ app, config }%%loaderArgs%%) => {
   const db = await dbLoader({ app, config });
 
   Logger.info("✌️ DB loaded and connected!");

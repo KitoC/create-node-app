@@ -1,9 +1,10 @@
 %%imports%%
 
-%%export%% ({ app, config }) => {
+%%export%% ({ app, config }%%loaderArgs%%) => {
   const env = process.env.NODE_ENV || "development";
 
-  let db = {};
+  let db = {} %%db%%;
+  const getModelByKey%%getModelByKey%% = (key) => get(db, key, {});
 
   const _config = get(config, `db.${env}`, {});
 
@@ -12,7 +13,7 @@
     _config
   );
 
-  const modelDir = path.join(process.cwd(), "src", "models");
+  const modelDir = path.join(process.cwd(), "src", "db", "models");
 
   fs.readdirSync(modelDir).forEach((file) => {
     const model = require(`./${file}`)(sequelize);
@@ -20,7 +21,6 @@
     db = { ...db, [model.name]: model };
   });
 
-  const getModelByKey = (key) => get(db, key, {});
 
   Object.keys(db).forEach((modelName) => {
     if (getModelByKey(modelName).associate) {

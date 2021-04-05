@@ -1,6 +1,6 @@
 %%imports%%
 
-%%export%% ({ app, registerModules = () => {} }) => {
+%%export%% ({ app, registerModules = () => {} }%%loaderArgs%%) => {
   const container = awilix.createContainer();
 
   container.loadModules(["services/**/*.js"], {
