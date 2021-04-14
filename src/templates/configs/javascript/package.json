@@ -6,7 +6,8 @@
   "scripts": {
     "test": "test",
     "start.hot": "nodemon src/server",
-    "start": "node src/server"
+    "start": "node src/server",
+    "sql": "npx sequelize-cli"
   },
   "repository": {
     "type": "git",

@@ -6,3 +6,4 @@ export interface Db {
 }
 
 export type GetModelByKeyFunction = (key: string) => any;
+export type AddModelToDbFunction = (file: string) => any;

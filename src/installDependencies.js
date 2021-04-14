@@ -3,6 +3,12 @@ const shell = require("shelljs");
 const createFolderStructure = (config) => {
   const { appName, appType, database, language } = config;
 
+  const isTypescript = language === "typescript";
+
+  const sequelizeCli = isTypescript
+    ? "sequelize-cli-typescript"
+    : "sequelize-cli";
+
   const appDeps = {
     "node:backend": {
       default: [
@@ -14,7 +20,7 @@ const createFolderStructure = (config) => {
         "lodash",
         "awilix",
         "sequelize",
-        "sequelize-cli",
+        sequelizeCli,
         database,
       ],
       dev: [
@@ -36,7 +42,7 @@ const createFolderStructure = (config) => {
     "helmet",
     "winston",
     "awilix",
-    "sequelize-cli",
+    sequelizeCli,
   ];
 
   const pkgTypes = requiredDeps.default
@@ -60,7 +66,7 @@ const createFolderStructure = (config) => {
   shell.exec(`cd ${appName} && npm i ${requiredDeps.default.join(" ")}`);
   shell.exec(`cd ${appName} && npm i -D ${requiredDeps.dev.join(" ")}`);
 
-  if (language === "typescript") {
+  if (isTypescript) {
     shell.exec(`cd ${appName} && npm i -D ${typescriptDeps.dev.join(" ")}`);
   }
 };

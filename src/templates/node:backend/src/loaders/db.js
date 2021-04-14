@@ -6,6 +6,8 @@
   let db = {} %%db%%;
   const getModelByKey%%getModelByKey%% = (key) => get(db, key, {});
 
+  const addModelToDb%%addModelToDb%%
+
   const _config = get(config, `db.${env}`, {});
 
   const sequelize = new Sequelize(
@@ -15,11 +17,7 @@
 
   const modelDir = path.join(process.cwd(), "src", "db", "models");
 
-  fs.readdirSync(modelDir).forEach((file) => {
-    const model = require(`./${file}`)(sequelize);
-
-    db = { ...db, [model.name]: model };
-  });
+  fs.readdirSync(modelDir).forEach(addModelToDb);
 
 
   Object.keys(db).forEach((modelName) => {

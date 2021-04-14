@@ -6,7 +6,8 @@
   "scripts": {
     "test": "test",
     "start.hot": "ts-node-dev src/server",
-    "start": "ts-node-dev src/server"
+    "start": "ts-node-dev src/server",
+    "sql": "npx sequelize-cli-typescript"
   },
   "repository": {
     "type": "git",

@@ -46,7 +46,7 @@ const findFlag = ({ key, defaultValue, multi }) => {
 };
 
 (async () => {
-  const config = {
+  let config = {
     appType: findFlag({ key: "--appType", defaultValue: "node:backend" }),
     language: findFlag({ key: "--lang", defaultValue: "javascript" }),
     api_mode: findFlag({
@@ -58,7 +58,7 @@ const findFlag = ({ key, defaultValue, multi }) => {
   };
 
   if (!args.includes("--skip")) {
-    config = await prompts([
+    prompResults = await prompts([
       {
         type: "select",
         name: "language",
@@ -83,6 +83,8 @@ const findFlag = ({ key, defaultValue, multi }) => {
       },
     ]);
   }
+
+  config = { ...config, ...prompResults };
 
   config.appName = appName;
 
