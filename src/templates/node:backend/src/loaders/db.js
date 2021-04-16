@@ -17,7 +17,7 @@
 
   const modelDir = path.join(process.cwd(), "src", "db", "models");
 
-  fs.readdirSync(modelDir).forEach(addModelToDb);
+  %%modelLoader%%;
 
 
   Object.keys(db).forEach((modelName) => {

@@ -25,6 +25,12 @@ import { Db, GetModelByKeyFunction, AddModelToDbFunction } from "../@types/db.ty
     db = { ...db, [startCase(model.name)]: model };
   }`,
   },
+  modelLoader: {
+    javascript: `fs.readdirSync(modelDir).forEach(addModelToDb)`,
+    typescript: `fs.readdirSync(modelDir)
+    .filter((file) => !["db.types.ts", "db.types.js"].includes(file))
+    .forEach(addModelToDb);`,
+  },
   loaderArgs: {
     typescript: ": LoaderArgs",
   },
